@@ -1,26 +1,33 @@
-<!doctype html>
- <html lang="ja">
-   <head>
-    <title>Laravelチュートリアル</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   </head>
-   <body class="p-3">
-     <h1>ブログ一覧</h1>
-  
-     @foreach ($articles as $article)
-     <div class="card mb-2">
-       <div class="card-body">
-         <h4 class="card-title">{{$article->title}}</h4>
-         <h6 class="card-subtitle mb-2 text-muted">{{$article->updated_at}}</h6>
-         <p class="card-text">{{$article->body}}</p>
-       </div>
-     </div>
-     @endforeach
-   </body>
- </html> 
- 
+@extends('layouts.article')
+
+@section('title', 'ブログ一覧')
+
+@section('content')
+  <div class="container">
+    @if (Session::has('message'))
+    <div class="alert alert-success" role="alert">
+      {{session('message')}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+    <p><a href="/posts/add" class="btn btn-primary">新規追加</a></p>
+    
+    @foreach ($articles as $article)
+    @if ($article->id == session('article_id'))
+    <div class="card mb-2 font-weight-bold border-success">
+    @else
+    <div class="card mb-2">
+    @endif
+      <div class="card-body">
+        <h4 class="card-title">{{$article->title}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{$article->updated_at}}</h6>
+        <p class="card-text">{{$article->body}}</p>
+        <a href="/posts/edit/{{$article->id}}" class="card-link">修正</a>
+        <a href="/posts/delete/{{$article->id}}" class="card-link">削除</a>
+      </div>
+    </div>
+    @endforeach
+  </div>
+@endsection
