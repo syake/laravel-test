@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::get('/show', 'PagesController@show');
 
 // CRUD
-Route::get('/posts', 'ArticleController@index');
+Route::group(['prefix' => 'posts'], function(){
+  Route::any('/', 'ArticleController@index')->name('index');
+  Route::get('/add', 'ArticleController@add');
+  Route::post('/add', 'ArticleController@store');
+});
