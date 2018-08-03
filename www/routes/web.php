@@ -22,4 +22,6 @@ Route::group(['prefix' => 'posts'], function(){
   Route::any('/', 'ArticleController@index')->name('index');
   Route::get('/add', 'ArticleController@add');
   Route::post('/add', 'ArticleController@store');
+  Route::get('/edit/{id}',     'ArticleController@edit');
+  Route::post('/edit',     'ArticleController@update');
 });
