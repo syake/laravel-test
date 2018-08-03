@@ -24,8 +24,11 @@ class ArticleController extends Controller
         $article->title = $request->title;
         $article->body = $request->body;
         $article->save();
+
+        $request->session()->flash('message', '記事「' . $article->title . '」を登録しました');
+        $request->session()->flash('article_id', $article->id);
   
-        return view('article.store');
+        return redirect()->route('index');
     }
 
     public function edit(Request $request, $id)
