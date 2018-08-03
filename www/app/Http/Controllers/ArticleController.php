@@ -46,4 +46,19 @@ class ArticleController extends Controller
  
         return redirect()->route('index');
     }
+
+    public function show(Request $request, $id)
+    {
+        $article = Article::find($id);
+        return view('article.show', ['article' => $article]);
+    }
+ 
+    public function delete(Request $request)
+    {
+        $article = Article::find($request->id);
+        Article::destroy($request->id);
+
+        $request->session()->flash('message', '記事「' . $article->title . '」を削除しました');
+        return redirect()->route('index');
+    }
 }
