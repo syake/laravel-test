@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/show', 'PagesController@show');
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 // CRUD
 Route::group(['prefix' => 'posts'], function(){
   Route::any('/', 'ArticleController@index')->name('index');

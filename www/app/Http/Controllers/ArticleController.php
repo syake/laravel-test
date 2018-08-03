@@ -7,6 +7,16 @@ use App\Article;
 
 class ArticleController extends Controller
 {   
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $articles = Article::orderBy('id', 'desc')->get();
