@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/show', 'PagesController@show');
+
+// CRUD
+Route::get('/posts', 'ArticleController@index');
