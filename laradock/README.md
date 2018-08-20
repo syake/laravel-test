@@ -5,11 +5,13 @@
 Mac
 ```
 $ mv env-example .env
+$ php artisan key:generate
 ```
 
 Windows
 ```
 $ copy env-example .env
+$ php artisan key:generate
 ```
 
 ### DB設定
