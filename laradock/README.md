@@ -19,7 +19,35 @@ Windows
 $ copy env-example .env
 ```
 
-## 運用
+### DB設定
+
+MySQLにログイン
+```
+$ docker-compose up -d mysql
+$ docker-compose exec mysql bash
+root@3ae2e68976c6:/# mysql -u root -p
+password: root
+```
+
+データベース生成
+```
+mysql> create database laravel_test;
+```
+
+### マイグレーション
+
+```
+$ docker-compose up -d nginx mysql workspace
+$ docker-compose exec workspace bash
+$ php artisan migrate
+```
+
+Seederの実行
+```
+$ php artisan db:seed
+```
+
+## 開発
 
 ### コンテナ起動
 
