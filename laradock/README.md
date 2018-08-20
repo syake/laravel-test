@@ -27,6 +27,15 @@ $ copy env-example .env
 $ docker-compose up -d nginx mysql phpmyadmin redis workspace
 ```
 
+**www**  
+http://localhost:3000
+
+**phpMyAdmin**  
+http://localhost:8080  
+サーバ：mysql  
+ユーザ名：root  
+パスワード：root
+
 ### コンテナ停止
 
 ```
