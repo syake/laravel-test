@@ -136,10 +136,13 @@ services:
     phpmyadmin:
       build: ./phpmyadmin
       environment:
-        - PMA_ARBITRARY=1
+        - PMA_ARBITRARY=0
+        - PMA_HOST=mysql
         - MYSQL_USER=${PMA_USER}
         - MYSQL_PASSWORD=${PMA_PASSWORD}
         - MYSQL_ROOT_PASSWORD=${PMA_ROOT_PASSWORD}
+      volumes:
+        - ./phpmyadmin/sessions:/sessions
       ports:
         - "${PMA_PORT}:80"
       depends_on:
